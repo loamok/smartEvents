@@ -9,7 +9,7 @@
 const $ = require('jquery');
 global.$ = global.jQuery = $;
 
-import { recordSmartEvent, triggerMeOn, setMeFirst, setMeLast,  smartEventDefine } from './js/let/smartEvents.webpack';
+import { recordSmartEvent, triggerMeOn, setMeFirst, setMeLast,  smartEventDefine } from './lib_js/smartEvents.webpack';
 global.recordSmartEvent = recordSmartEvent;
 global.triggerMeOn = triggerMeOn;
 global.setMeFirst = setMeFirst;
