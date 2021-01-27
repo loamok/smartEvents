@@ -17,6 +17,8 @@ Either way you will need jQuery for this lib.
 	* In the 'src' folder you'll find an 'app.js' file wich is provided as a template.
 	It show how to include globally jQuery and define this lib's functions in a folder named "lib_js".
 	The functions are defined in the "smartEvents.webpack.js" file.
+        * In a file using smartEvent, you may need to get the global definition pattern such as like this (@see "Define a callback handler and library usage" below) 
+        ``` const smartEventDefine = global.smartEventDefine; ```
 
 Minified js files are planned to be provided soon.
 A complete rewrite in full object mode is also planned.
