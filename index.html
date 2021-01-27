@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="src/lib_js/smartEvents.single.js"></script>
+        <script>
+            $(document).ready(function() {
+                
+            });
+        </script>
+    </head>
+    <body>
+        <ul>
+    <li>
+        <button id='zero'>
+            Test 0 
+        </button><br>
+        <p>
+            2 Standard jQuery callbacks defined as inverted. (no ordering)<br>
+            Expected: 1, 2 as we all know we have to define callbacks in the right order to do so
+        </p>
+    </li>
+    <li>
+        <button id='first'>
+            Test 1
+        </button><br>
+        <p>
+            2 callback functions natural order<br>
+            Expected: 1, 2
+        </p>
+    </li>
+    <li>
+        <button id='second'>
+            Test 2 
+        </button><br>
+        <p>
+            2 callback functions the second as "first"<br>
+            Expected: 2, 1
+        </p>
+    </li>
+    <li>
+        <button id='third'>
+            Test 3
+        </button><br>
+        <p>
+            2 callback functions first as "last"<br>
+            Expected: 2, 1
+        </p>
+    </li>
+    <li>
+        <button id='fourth'>
+            Test 4 
+        </button><br>
+        <p>
+            2 callback functions both with same order<br>
+            Expected: 1, 2
+        </p>
+    </li>
+    <li>
+        <button id='fifth'>
+            Test 5 
+        </button><br >
+        <p>
+            3 callback functions , first as natural order, second as last, and the last as first<br>
+            Expected : 3, 1, 2
+        </p>
+    </li>
+    <li>
+        <button id='sixth'>
+            Test 6 
+        </button><br >
+        <p>
+            6 callback functions,<br> 
+            Defines: 6: first, 5: first, 4: natural, 3: 0, 1: last, 2: last<br> 
+            Expected: 5, 6, 4, 3, 1, 2</p>
+    </li>
+    <li>
+        <button id='clear'>
+            Clear output
+        </button>
+    </li>
+</ul>
+<div id="out">
+Results Here <br>
+</div>
+    </body>
+</html>

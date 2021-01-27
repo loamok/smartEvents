@@ -1,0 +1,8 @@
+{
+    "name": "smartEvents",
+    "version": "1.0.0",
+    "keywords": ["util", "functional", "jQuery", "client", "browser", "eventHandling"],
+    "author": "symio",
+    "contributors": [],
+    "dependencies": {}
+}
