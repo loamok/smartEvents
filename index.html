@@ -9,6 +9,96 @@
         <script>
             $(document).ready(function() {
                 
+                $('#clear').click(function(e){
+                    $('#out').html("");
+                })
+                
+                var oneDef = { ...smartEventDefine };
+                var twoDef  = { ...smartEventDefine };
+                var threeDef  = { ...smartEventDefine };
+                var fourDef  = { ...smartEventDefine };
+                var fiveDef  = { ...smartEventDefine };
+                var sixDef  = { ...smartEventDefine };
+                
+                // handlers definition
+                oneDef.event = 'click';
+                oneDef.handler = function (obj, event) {
+                    $('#out').append('1 <br>');
+                };
+
+                twoDef.event = 'click';
+                twoDef.handler = function (obj, event) {
+                    $('#out').append('2 <br>');
+                };
+
+                threeDef.event = 'click';
+                threeDef.handler = function (obj, event) {
+                    $('#out').append('3 <br>');
+                };
+
+                fourDef.event = 'click';
+                fourDef.handler = function (obj, event) {
+                    $('#out').append('4 <br>');
+                };
+                
+                fiveDef.event = 'click';
+                fiveDef.handler = function (obj, event) {
+                    $('#out').append('5 <br>');
+                };
+
+                sixDef.event = 'click';
+                sixDef.handler = function (obj, event) {
+                    $('#out').append('6 <br>');
+                };
+                
+                // test 0
+                $('#zero').click(function(e){
+                    $('#out').append('2 <br>');
+                });
+                $('#zero').click(function(e){
+                    $('#out').append('1 <br>');
+                });
+                // test 1
+                oneDef.owner = $('#first');
+                    recordSmartEvent(oneDef);
+                twoDef.owner = $('#first');
+                    recordSmartEvent(twoDef);
+                // test 2
+                oneDef.owner = $('#second');
+                    recordSmartEvent(oneDef);
+                twoDef.owner = $('#second');
+                    setMeFirst(twoDef);
+                // test 3
+                oneDef.owner = $('#third');
+                    setMeLast(oneDef);
+                twoDef.owner = $('#third');
+                    recordSmartEvent(twoDef);
+                // test 4
+                oneDef.owner = $('#fourth');
+                    recordSmartEvent(oneDef,1);
+                twoDef.owner = $('#fourth');
+                    recordSmartEvent(twoDef,1);
+                // test 5
+                oneDef.owner = $('#fifth');
+                    recordSmartEvent(oneDef);
+                twoDef.owner = $('#fifth');
+                    setMeLast(twoDef);
+                threeDef.owner = $('#fifth');
+                    setMeFirst(threeDef);
+                // test 6
+                sixDef.owner = $('#sixth');
+                    setMeFirst(sixDef);
+                fiveDef.owner = $('#sixth');
+                    setMeFirst(fiveDef);
+                fourDef.owner = $('#sixth');
+                    recordSmartEvent(fourDef);
+                threeDef.owner = $('#sixth');
+                    recordSmartEvent(threeDef, 0);
+                oneDef.owner = $('#sixth');
+                    setMeLast(oneDef);
+                twoDef.owner = $('#sixth');
+                    setMeLast(twoDef);
+
             });
         </script>
     </head>
