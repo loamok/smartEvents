@@ -30,16 +30,15 @@ For convenience a configuration object template is provided you can copy it to a
 (Ecma 7 functionnal feature "..." comme to clone object and do not let Javascript use a reference instead.)
 
 To define a **smartEvent** you will need 3 things who are : 
-* an object "owner" of the event, owners objects must have an id attribute in order for this library to work. This point is not open to discuss.
 * the event name (like click, change, ...)
 * a callback function (callback functions automatically recieve owner and jQuery Event as prameters)
+* one and only one Html element with an id (sadly for now it could not work without ids and was tested only on one element. I plan to make it work on elements collections and without id attribute).
 ```
 // handlers definition
 myDefine.event = 'click'; // jQuery event name
 myDefine.handler = function (obj, event) { // callback function
     // do something
 };
-myDefine.owner = $('#someIdentifier'); // object to attach an handler to (something like a button or other html element)
 ```
 
 ### Functions to manipulate events:
@@ -47,36 +46,39 @@ After having a callback definition you'll have to register it.
 
 Three functions let you manipulate the registring of an Event.
 You are free to use the one who matches your needs at a moment.
-#### recordSmartEvent:
+
+#### .smartEvent:
 Register a smartEvent.
 The only mandatory parameter is the first one "definition" who accept a "smartEventDefine" like object.
 other parameters are:
 * order: optional: an order number
 * isLast: optional and not recommended: boolean please use setMeLast instead.
 * isFirst: optional and not recommended: boolean please use setMeFirst instead.
-`` ``
-recordSmartEvent (myDefine);
+```
+$('#someIdentifier').smartEvent(myDefine);
 // or
-recordSmartEvent (myDefine, 5);
-// or (not recommended please use setMeLast instead.)
-recordSmartEvent (myDefine, 999, true);
-// or (not recommended please use setMeFirst instead.)
-recordSmartEvent (myDefine, -999, null, true);
-`` ``
-#### setMeFirst:
+$('#someIdentifier').smartEvent(myDefine, 5);
+// or (not recommended please use .smartEventLast instead.)
+$('#someIdentifier').smartEvent(myDefine, 999, true);
+// or (not recommended please use .smartEventFirst instead.)
+$('#someIdentifier').smartEvent (myDefine, -999, false, true);
+```
+
+#### .smartEventFirst:
 Use the definition as first handler to be trigger
 The only parameter is mandatory "definition" who accept a "smartEventDefine" like object.
 
-`` ``
-setMeFirst (myDefine);
-`` ``
-#### setMeLast:
+```
+$('#someIdentifier').smartEventFirst(myDefine);
+```
+
+#### .smartEventLast:
 Use the definition as last handler to be trigger
 The only parameter is mandatory "definition" who accept a "smartEventDefine" like object.
 
-`` ``
-setMeLast (myDefine);
-`` ``
+```
+$('#someIdentifier').smartEventLast(myDefine);
+```
 
 With this 3 functions you will be able to manipulate the order of all events.
 
