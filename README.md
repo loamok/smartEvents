@@ -40,7 +40,7 @@ define it in your package.json file :
     const $ = require('jquery');
     global.$ = global.jQuery = $;
 
-    import { smartEventDefine } from './lib_js/smartEvents.webpack';
+    import { smartEventDefine } from 'smartEvents';
     global.smartEventDefine = smartEventDefine;
 
     /* In a file using smartEvent, you may need to get the global definition pattern such as like this (@see "Define a callback handler and library usage" below) */
@@ -71,7 +71,7 @@ Require from app.js :
     const $ = require('jquery');
     global.$ = global.jQuery = $;
 
-    import { smartEventDefine } from '../dist/smartEvents.webpack.min'; // minified usage
+    import { smartEventDefine } from 'smartEvents'; // minified usage
     global.smartEventDefine = smartEventDefine;
 ```
 Or you can import it in your assets folder :  
