@@ -20,10 +20,10 @@ Either way you will need jQuery for this lib.
         * In a file using smartEvent, you may need to get the global definition pattern such as like this (@see "Define a callback handler and library usage" below) 
         ``` const smartEventDefine = global.smartEventDefine; ```
 * 3°) Using the minified files :
-        * You always need Jquery no matter how you load it.
-        * Standard Js (1) :
+	* You always need Jquery no matter how you load it.
+	* Standard Js (1) :
         ``` <script src="dist/smartEvents.single.min.js"></script> ```
-        * Webpack (2) :
+	* Webpack (2) :
         ``` <script src="dist/smartEvents.webpack.min.js"></script> ```
 
 Minified js files are planned to be optimized soon.
