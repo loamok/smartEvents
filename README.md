@@ -8,19 +8,17 @@ Either way you will need jQuery for this lib.
 * 0°) Common : 
 	* Download the library from here (or only one of the file you need)
 	* Copy file/files to a folder where you put the Javascripts files in your project.
+
 * 1°) : Standard javascript usage :
 	* Include a script call to jQuery : 
-```HTML 
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
-
+	* 
+```HTML
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 ```
 	
 	* Include a script call to the standalone js file like : 
-```HTML 
-
-	<script src="src/lib_js/smartEvents.single.js"></script> 
-
+```HTML
+    <script src="src/lib_js/smartEvents.single.js"></script> 
 ```
 	
 * 2°) Use under Webpack structure (symfony 4+ projects or like) :
@@ -28,46 +26,42 @@ Either way you will need jQuery for this lib.
 	It show how to include globally jQuery and define this lib's functions in a folder named "lib_js".
 	The functions are defined in the "smartEvents.webpack.js" file.  
 	Exemple:  
+	
 ```JavaScript
+    /* global global  */
 
-	/* global global  */
-        
-        const $ = require('jquery');
-        global.$ = global.jQuery = $;
-        
-        import { smartEventDefine } from './lib_js/smartEvents.webpack';
-        global.smartEventDefine = smartEventDefine;
-        
-        /* In a file using smartEvent, you may need to get the global definition pattern such as like this (@see "Define a callback handler and library usage" below) */
-        const smartEventDefine = global.smartEventDefine;
+    const $ = require('jquery');
+    global.$ = global.jQuery = $;
 
+    import { smartEventDefine } from './lib_js/smartEvents.webpack';
+    global.smartEventDefine = smartEventDefine;
+
+    /* In a file using smartEvent, you may need to get the global definition pattern such as like this (@see "Define a callback handler and library usage" below) */
+    const smartEventDefine = global.smartEventDefine;
 ```
 
 * 3°) Using the minified files :
 	* You always need Jquery no matter how you load it.
 	* Standard Js (1) :
-```HTML 
 
-        <script src="dist/smartEvents.single.min.js"></script> 
-
+```HTML
+    <script src="dist/smartEvents.single.min.js"></script> 
 ```
-        
+
 	* Webpack (2) :
 	Exemple:  
 
-```JavaScript 
+```JavaScript
+    /* global global */
 
-	/* global global */
-	
-        const $ = require('jquery');
-        global.$ = global.jQuery = $;
-        
-        import { smartEventDefine } from '../dist/smartEvents.webpack.min'; // minified usage
-        global.smartEventDefine = smartEventDefine;
-        
-        /* In a file using smartEvent, you may need to get the global definition pattern such as like this (@see "Define a callback handler and library usage" below)  */
-        const smartEventDefine = global.smartEventDefine; 
+    const $ = require('jquery');
+    global.$ = global.jQuery = $;
 
+    import { smartEventDefine } from '../dist/smartEvents.webpack.min'; // minified usage
+    global.smartEventDefine = smartEventDefine;
+
+    /* In a file using smartEvent, you may need to get the global definition pattern such as like this (@see "Define a callback handler and library usage" below)  */
+    const smartEventDefine = global.smartEventDefine; 
 ```
 
 Minified js files are planned to be optimized soon.  
@@ -77,10 +71,8 @@ A complete rewrite in full object mode is already availlable.
 
 For convenience a configuration object template is provided you can copy it to a var in your scripts :  
 
-```JavaScript 
-
+```JavaScript
 var myDefine = { ...smartEventDefine } 
-
 ``` 
 (Ecma 262 functionnal feature "spread operator" "..." comme to clone object and do not let Javascript use a reference instead.)  
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
@@ -90,13 +82,11 @@ To define a **smartEvent** you will need 3 things who are :
 * a callback function (callback functions automatically recieve owner and jQuery Event as prameters)
 * one and only one Html element with an id (sadly for now it could not work without ids and was tested only on one element. I plan to make it work on elements collections and without id attribute).
 ```JavaScript
-
-// handlers definition
-myDefine.event = 'click'; // jQuery event name
-myDefine.handler = function (obj, event) { // callback function
-    // do something
-};
-
+    // handlers definition
+    myDefine.event = 'click'; // jQuery event name
+    myDefine.handler = function (obj, event) { // callback function
+        // do something
+    };
 ```
 
 ### Functions to manipulate events:
@@ -113,15 +103,13 @@ other parameters are:
 * isFirst: optional and not recommended: boolean please use setMeFirst instead.
 
 ```JavaScript
-
-$('#someIdentifier').smartEvent(myDefine);
-// or
-$('#someIdentifier').smartEvent(myDefine, 5);
-// or (not recommended please use .smartEventLast instead.)
-$('#someIdentifier').smartEvent(myDefine, 999, true);
-// or (not recommended please use .smartEventFirst instead.)
-$('#someIdentifier').smartEvent (myDefine, -999, false, true);
-
+    $('#someIdentifier').smartEvent(myDefine);
+    // or
+    $('#someIdentifier').smartEvent(myDefine, 5);
+    // or (not recommended please use .smartEventLast instead.)
+    $('#someIdentifier').smartEvent(myDefine, 999, true);
+    // or (not recommended please use .smartEventFirst instead.)
+    $('#someIdentifier').smartEvent (myDefine, -999, false, true);
 ```
 
 #### .smartEventFirst:
@@ -129,9 +117,7 @@ Use the definition as first handler to be trigger.
 The only parameter is mandatory "definition" who accept a "smartEventDefine" like object.
 
 ```JavaScript
-
-$('#someIdentifier').smartEventFirst(myDefine);
-
+    $('#someIdentifier').smartEventFirst(myDefine);
 ```
 
 #### .smartEventLast:
@@ -139,9 +125,7 @@ Use the definition as last handler to be trigger.
 The only parameter is mandatory "definition" who accept a "smartEventDefine" like object.
 
 ```JavaScript
-
-$('#someIdentifier').smartEventLast(myDefine);
-
+    $('#someIdentifier').smartEventLast(myDefine);
 ```
 
 With this 3 first functions you will be able to manipulate the order of all events.
@@ -158,11 +142,9 @@ Explanation:
 * others event names handlers will be left untouched.
 
 ```JavaScript
-
-$('#someIdentifier').smartEventDeRegister(myDefine);
-// or
-$('#someIdentifier').smartEventDeRegister({event: 'click'});
-
+    $('#someIdentifier').smartEventDeRegister(myDefine);
+    // or
+    $('#someIdentifier').smartEventDeRegister({event: 'click'});
 ```
 
 Function to remove handlers just came out in this version.  
