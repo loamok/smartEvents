@@ -49,6 +49,25 @@ Exemple:
     <script src="dist/smartEvents.single.min.js"></script> 
 ```
 #### Webpack (2) :
+You can use smartEvents with webpack with npm :  
+define it in your package.json file :
+```JavaScript
+...
+    "dependencies": {
+        "smartEvents": "github:loamok/smartEvents",
+...
+```
+Require from app.js :  
+```JavaScript
+    /* global global */
+
+    const $ = require('jquery');
+    global.$ = global.jQuery = $;
+
+    import { smartEventDefine } from '../dist/smartEvents.webpack.min'; // minified usage
+    global.smartEventDefine = smartEventDefine;
+```
+Or you can import it in your assets folder :  
 Exemple:  
 
 ```JavaScript
