@@ -6,23 +6,22 @@ To use this library, you have 2 options which depend on the structure of your pr
 Either way you will need jQuery for this lib.
 
 * 0°) Common : 
-	* Download the library from here (or only one of the file you need)
-	* Copy file/files to a folder where you put the Javascripts files in your project.
+	- Download the library from here (or only one of the file you need)
+	- Copy file/files to a folder where you put the Javascripts files in your project.
 
 * 1°) : Standard javascript usage :
-	* Include a script call to jQuery : 
+	- Include a script call to jQuery : 
 
 ```HTML
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
-```
-	
+```	
 	* Include a script call to the standalone js file like : 
 ```HTML
     <script src="src/lib_js/smartEvents.single.js"></script> 
 ```
 	
 * 2°) Use under Webpack structure (symfony 4+ projects or like) :
-	* In the 'src' folder you'll find an 'app.js' file wich is provided as a template.
+	- In the 'src' folder you'll find an 'app.js' file wich is provided as a template.
 	It show how to include globally jQuery and define this lib's functions in a folder named "lib_js".
 	The functions are defined in the "smartEvents.webpack.js" file.  
 	Exemple:  
@@ -41,14 +40,13 @@ Either way you will need jQuery for this lib.
 ```
 
 * 3°) Using the minified files :
-	* You always need Jquery no matter how you load it.
-	* Standard Js (1) :
+	- You always need Jquery no matter how you load it.
+	- Standard Js (1) :
 
 ```HTML
     <script src="dist/smartEvents.single.min.js"></script> 
 ```
-
-	* Webpack (2) :
+        - Webpack (2) :
 	Exemple:  
 
 ```JavaScript
