@@ -28,7 +28,13 @@ It show how to include globally jQuery and define this lib's functions in a fold
 The functions are defined in the "smartEvents.webpack.js" file.  
 Exemple:  
 
+define it in your package.json file :
 ```JavaScript
+// package.json and npm install smartEvents or npm install
+    "dependencies": {
+        "smartEvents": "github:loamok/smartEvents",
+
+// app.js
     /* global global  */
 
     const $ = require('jquery');
@@ -51,11 +57,12 @@ Exemple:
 #### Webpack (2) :
 You can use smartEvents with webpack with npm :  
 define it in your package.json file :
+
 ```JavaScript
-...
+    // package.json and npm install smartEvents or npm install
     "dependencies": {
         "smartEvents": "github:loamok/smartEvents",
-...
+
 ```
 Require from app.js :  
 ```JavaScript
