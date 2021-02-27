@@ -123,6 +123,26 @@ var smartEventManager = {
     },
     
     /**
+     * Totally de-register a smartevent for an object owner
+     * Object owner with id attribute and the event name to deregister
+     * It will remove all the handlers for an event in an object
+     * 
+     * Param is smartEventDefine object with owner and event
+     * 
+     * @param {Object} definition
+     * @returns {Void}
+     */
+    deRegister: function (/*[Object])*/ definition) {
+        if(definition.owner) { // objet with at least owner and event name is mandatory
+            if(definition.owner.attr('id')) { // id attr is mandatory on object owning
+                var smartE = smartEventManager.smartEvents[definition.owner.attr('id')];
+                $(definition.owner).off(definition.event); // de-register the smartE general callback
+                delete smartE[definition.event]; // remove all handlers definitions for this event name
+            }
+        }
+    },
+    
+    /**
      * Register an ordered handler in the smartEvent system
      * only the "definition" parameter is mandatory
      * other parameters are optionnals
@@ -237,25 +257,34 @@ var smartEventManager = {
                 // have we got a collection of handlers and an ordered one
                 for (const sOrder of smartE[event.data.eventName].toTrigger) {
                     // trigger all handlers that are not flagged "last" or "first"
-                    if(sOrder !== smartE[event.data.eventName].last && sOrder !== smartE[event.data.eventName].first) {
+                    if(sOrder !== smartE[event.data.eventName].last && sOrder !== smartE[event.data.eventName].first) 
                         smartE[event.data.eventName][sOrder].handler(event.data.obj, event);
+                    
                     }
-                }
 
                 // finally trigger the last if it exists
                 if(smartE[event.data.eventName].last !== null) 
                     smartE[event.data.eventName][smartE[event.data.eventName].last].handler(event.data.obj, event);
+                
             }
         }
     }
 };
 
-
 (function ($) {
+    $.fn.smartEventDeRegister = function(/*[Object])*/ definition) {
+        var $this = $(this);
+        var def = {...definition};
+        
+        def = smartEventManager.ownerForPlugin(def, $this);
+        smartEventManager.deRegister(def);
+    };
+    
     $.fn.smartEvent = function(/*[Object])*/ definition, /*integer*/ order, /*Boolean*/ isLast, /*Boolean*/ isFirst) {
         
         var $this = $(this);
         var def = {...definition};
+        
         def = smartEventManager.ownerForPlugin(def, $this);
         
         if(isLast !== undefined && isLast !== false) {
@@ -279,6 +308,7 @@ var smartEventManager = {
         def = smartEventManager.ownerForPlugin(def, $this);
         
         smartEventManager.setMeFirst(def);
+        
     };
     
     $.fn.smartEventLast = function(/*[Object])*/ definition) {
@@ -288,6 +318,7 @@ var smartEventManager = {
         def = smartEventManager.ownerForPlugin(def, $this);
 
         smartEventManager.setMeLast(def);
+        
     };
     
 })(jQuery);

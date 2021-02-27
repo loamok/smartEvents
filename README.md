@@ -19,9 +19,15 @@ Either way you will need jQuery for this lib.
 	The functions are defined in the "smartEvents.webpack.js" file.
         * In a file using smartEvent, you may need to get the global definition pattern such as like this (@see "Define a callback handler and library usage" below) 
         ``` const smartEventDefine = global.smartEventDefine; ```
+* 3°) Using the minified files :
+        * You always need Jquery no matter how you load it.
+        * Standard Js (1) :
+        ``` <script src="dist/smartEvents.single.min.js"></script> ```
+        * Webpack (2) :
+        ``` <script src="dist/smartEvents.webpack.min.js"></script> ```
 
-Minified js files are planned to be provided soon.
-A complete rewrite in full object mode is also planned.
+Minified js files are planned to be optimized soon.
+A complete rewrite in full object mode is already availlable.
 
 ### Define a callback handler and library usage :
 
@@ -80,7 +86,25 @@ The only parameter is mandatory "definition" who accept a "smartEventDefine" lik
 $('#someIdentifier').smartEventLast(myDefine);
 ```
 
-With this 3 functions you will be able to manipulate the order of all events.
+With this 3 first functions you will be able to manipulate the order of all events.
 
-Functions to remove handlers are planned to be write in future version.
+#### .smartEventDeRegister:
+Use the definition to deregister an event for an owning object
+The only parameter is mandatory "definition" who accept a "smartEventDefine" like object.
+You can only give event (event name like 'click') in mandatory parameter.
+All the handlers define for this event will be deleted/de-registered.
+New definitions will be needed to restore the object fonctionnality.
+Explanation: 
+* If you define 2 handlers with same event name on an object, this function will not bee able to remove only the first or the second handler.
+* all of the 2 handlers with the same event name will be removed.
+* others event names handlers will be left untouched.
 
+```
+$('#someIdentifier').smartEventDeRegister(myDefine);
+// or
+$('#someIdentifier').smartEventDeRegister({event: 'click'});
+```
+
+Function to remove handlers just came out in this version.
+
+I, maybe, forgot something ask if you need help with my lib.
