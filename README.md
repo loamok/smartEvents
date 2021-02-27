@@ -2,7 +2,7 @@
 Smart events is a javascript library to give ordering to jQuery events
 
 ## Usage :
-To use this library, you have 2 options which depend on the structure of your project. 
+To use this library, you have 2 options which depend on the structure of your project.  
 Either way you will need jQuery for this lib.
 
 * 0°) Common : 
@@ -26,16 +26,17 @@ Either way you will need jQuery for this lib.
 	* Webpack (2) :
         ``` <script src="dist/smartEvents.webpack.min.js"></script> ```
 
-Minified js files are planned to be optimized soon.
+Minified js files are planned to be optimized soon.  
 A complete rewrite in full object mode is already availlable.
 
 ### Define a callback handler and library usage :
 
-For convenience a configuration object template is provided you can copy it to a var in your scripts : 
+For convenience a configuration object template is provided you can copy it to a var in your scripts :  
 ``` var myDefine = { ...smartEventDefine } ``` 
-(Ecma 7 functionnal feature "..." comme to clone object and do not let Javascript use a reference instead.)
+(Ecma 262 functionnal feature "spread operator" "..." comme to clone object and do not let Javascript use a reference instead.)  
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
 
-To define a **smartEvent** you will need 3 things who are : 
+To define a **smartEvent** you will need 3 things who are :  
 * the event name (like click, change, ...)
 * a callback function (callback functions automatically recieve owner and jQuery Event as prameters)
 * one and only one Html element with an id (sadly for now it could not work without ids and was tested only on one element. I plan to make it work on elements collections and without id attribute).
@@ -48,15 +49,14 @@ myDefine.handler = function (obj, event) { // callback function
 ```
 
 ### Functions to manipulate events:
-After having a callback definition you'll have to register it.
-
-Three functions let you manipulate the registring of an Event.
+After having a callback definition you'll have to register it.  
+Three functions let you manipulate the registring of an Event.  
 You are free to use the one who matches your needs at a moment.
 
 #### .smartEvent:
-Register a smartEvent.
-The only mandatory parameter is the first one "definition" who accept a "smartEventDefine" like object.
-other parameters are:
+Register a smartEvent.  
+The only mandatory parameter is the first one "definition" who accept a "smartEventDefine" like object.  
+other parameters are:  
 * order: optional: an order number
 * isLast: optional and not recommended: boolean please use setMeLast instead.
 * isFirst: optional and not recommended: boolean please use setMeFirst instead.
@@ -71,7 +71,7 @@ $('#someIdentifier').smartEvent (myDefine, -999, false, true);
 ```
 
 #### .smartEventFirst:
-Use the definition as first handler to be trigger
+Use the definition as first handler to be trigger.  
 The only parameter is mandatory "definition" who accept a "smartEventDefine" like object.
 
 ```
@@ -79,7 +79,7 @@ $('#someIdentifier').smartEventFirst(myDefine);
 ```
 
 #### .smartEventLast:
-Use the definition as last handler to be trigger
+Use the definition as last handler to be trigger.  
 The only parameter is mandatory "definition" who accept a "smartEventDefine" like object.
 
 ```
@@ -105,6 +105,5 @@ $('#someIdentifier').smartEventDeRegister(myDefine);
 $('#someIdentifier').smartEventDeRegister({event: 'click'});
 ```
 
-Function to remove handlers just came out in this version.
-
+Function to remove handlers just came out in this version.  
 I, maybe, forgot something ask if you need help with my lib.
