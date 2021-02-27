@@ -23,5 +23,5 @@ const $ = require('jquery');
 global.$ = global.jQuery = $;
 
 import { smartEventDefine } from './lib_js/smartEvents.webpack';
+//import { smartEventDefine } from '../dist/smartEvents.webpack.min'; // minified usage
 global.smartEventDefine = smartEventDefine;
-
