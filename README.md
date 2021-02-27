@@ -11,7 +11,7 @@ Either way you will need jQuery for this lib.
 
 * 1°) : Standard javascript usage :
 	* Include a script call to jQuery : 
-	* 
+
 ```HTML
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 ```
