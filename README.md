@@ -5,27 +5,29 @@ Smart events is a javascript library to give ordering to jQuery events
 To use this library, you have 2 options which depend on the structure of your project.  
 Either way you will need jQuery for this lib.
 
-* 0°) Common : 
-	- Download the library from here (or only one of the file you need)
-	- Copy file/files to a folder where you put the Javascripts files in your project.
+### 0°) Common : 
+#### Download the library from here (or only one of the file you need)
+#### Copy file/files to a folder where you put the Javascripts files in your project.
 
-* 1°) : Standard javascript usage :
-	- Include a script call to jQuery : 
+### 1°) : Standard javascript usage :
+#### Include a script call to jQuery : 
 
 ```HTML
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
-```	
-	* Include a script call to the standalone js file like : 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+```
+
+#### Include a script call to the standalone js file like : 
 ```HTML
     <script src="src/lib_js/smartEvents.single.js"></script> 
 ```
 	
-* 2°) Use under Webpack structure (symfony 4+ projects or like) :
-	- In the 'src' folder you'll find an 'app.js' file wich is provided as a template.
-	It show how to include globally jQuery and define this lib's functions in a folder named "lib_js".
-	The functions are defined in the "smartEvents.webpack.js" file.  
-	Exemple:  
-	
+### 2°) Use under Webpack structure (symfony 4+ projects or like) :
+#### In the 'src' folder you'll find an 'app.js' file wich is provided as a template.
+
+It show how to include globally jQuery and define this lib's functions in a folder named "lib_js".  
+The functions are defined in the "smartEvents.webpack.js" file.  
+Exemple:  
+
 ```JavaScript
     /* global global  */
 
@@ -39,15 +41,15 @@ Either way you will need jQuery for this lib.
     const smartEventDefine = global.smartEventDefine;
 ```
 
-* 3°) Using the minified files :
-	- You always need Jquery no matter how you load it.
-	- Standard Js (1) :
+### 3°) Using the minified files :
+#### You always need Jquery no matter how you load it.
+#### Standard Js (1) :
 
 ```HTML
     <script src="dist/smartEvents.single.min.js"></script> 
 ```
-        - Webpack (2) :
-	Exemple:  
+#### Webpack (2) :
+Exemple:  
 
 ```JavaScript
     /* global global */
@@ -67,7 +69,7 @@ A complete rewrite in full object mode is already availlable.
 
 ### Define a callback handler and library usage :
 
-For convenience a configuration object template is provided you can copy it to a var in your scripts :  
+For convenience a configuration object template is provided you can copy it to a var in your scripts :
 
 ```JavaScript
 var myDefine = { ...smartEventDefine } 
