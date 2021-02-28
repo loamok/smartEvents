@@ -100,13 +100,14 @@ For convenience a configuration object template is provided you can copy it to a
 ```JavaScript
 var myDefine = { ...smartEventDefine } 
 ``` 
-(Ecma 262 functionnal feature "spread operator" "..." comme to clone object and do not let Javascript use a reference instead.)  
+(Ecma 262 functionnal feature "spread operator" "..." come to clone object and do not let Javascript use a reference instead.)  
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
 
 To define a **smartEvent** you will need 3 things who are :  
-* the event name (like click, change, ...)
-* a callback function (callback functions automatically recieve owner and jQuery Event as prameters)
-* one and only one Html element with an id (sadly for now it could not work without ids and was tested only on one element. I plan to make it work on elements collections and without id attribute).
+* the event name (like "click", "change", "apersonal:trigger", ...)
+* a callback function (callback functions automatically recieves owner and jQuery Event as parameters, you can inject data in jQuery event)
+* one and only one Html element with an id attribute  
+*(sadly for now it could not work without ids and was tested only on one element. I work to find to make it work on elements collections and without id attribute).
 ```JavaScript
     // handlers definition
     myDefine.event = 'click'; // jQuery event name
@@ -117,7 +118,7 @@ To define a **smartEvent** you will need 3 things who are :
 
 ### Functions to manipulate events:
 After having a callback definition you'll have to register it.  
-Three functions let you manipulate the registring of an Event.  
+Three functions let you manipulate the registering of an Event.  
 You are free to use the one who matches your needs at a moment.
 
 #### .smartEvent:
@@ -162,9 +163,9 @@ The only parameter is mandatory "definition" who accept a "smartEventDefine" lik
 You can only give event (event name like 'click') in mandatory parameter.  
 All the handlers define for this event will be deleted/de-registered.  
 New definitions will be needed to restore the object fonctionnality.  
-Explanation: 
+Explanation:
 * If you define 2 handlers with same event name on an object, this function will not bee able to remove only the first or the second handler.
-* all of the 2 handlers with the same event name will be removed.
+* all of the handlers on the same event name will be removed.
 * others event names handlers will be left untouched.
 
 ```JavaScript
@@ -174,4 +175,4 @@ Explanation:
 ```
 
 Function to remove handlers just came out in this version.  
-I, maybe, forgot something ask if you need help with my lib.
+I, may, have forgoten something. If so ask if you need help with my lib.
