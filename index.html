@@ -5,8 +5,50 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="src/lib_js/smartEvents.single.js"></script>
-        <script>
+        <script src="dist/smartEvents.single.min.js"></script>
+        <script>        
+    // handlers definition, lets play a litle
+    // with one button we will : 
+    // trigger a 'first' and second handler
+    // define a personalized event with data from second handler 
+    // (so we make perso dependent of second (for a post ajax call maybe))
+    // and trigger it
+    var firstHDef = { ...smartEventDefine };
+    var secondHDef = { ...smartEventDefine };
+    var persoHDef = { ...smartEventDefine };
+    const PersonalEvent = 'personal:postClick'; // personal event Name
+        
+    secondHDef.event = 'click'; 
+    secondHDef.handler = function (obj, event) { 
+        console.log("In second Handler");
+        var event = $.Event(PersonalEvent); // and make the personal event
+        event.myData = "plop"; // with myData = "plop"
+        
+        $(obj).trigger(event); // and trigger it now
+    };
+    
+    firstHDef.event = 'click';
+    firstHDef.handler = function (obj, event) { 
+        console.log("In first Handler");
+    };
+    
+    persoHDef.event = PersonalEvent; // this is here where magic is made
+    persoHDef.handler = function (obj, event) { 
+        console.log("In personal trigered Handler myData : ", event.myData);
+    };
+    
+    $(document).ready(function() {
+        $('#myButton').smartEvent(secondHDef);
+        $('#myButton').smartEventFirst(firstHDef);
+        $('#myButton').smartEvent(persoHDef); // or first or last it is alone on 'personal:postClick' and will not collide with click
+        // and that's all ! you could write those lines in any order or from 3 files if you want it do not matter
+        // this will also work the same no writing order matter only your choices :
+        // $('#myButton').smartEvent(persoHDef); 
+        // $('#myButton').smartEventFirst(firstHDef);
+        // $('#myButton').smartEventLast(secondHDef);
+    });
+
+            
             $(document).ready(function() {
                 
                 $('#clear').click(function(e){
@@ -91,6 +133,7 @@
         </script>
     </head>
     <body>
+        <p>Advanced exemple : <button id='myButton'>Test Me</button></p>
         <ul>
     <li>
         <button id='zero'>

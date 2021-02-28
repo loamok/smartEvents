@@ -1,7 +1,8 @@
 # smartEvents
 Smart events is a javascript library to give ordering to jQuery events
 
-## Usage :
+## Installation :
+
 To use this library, you have 2 options which depend on the structure of your project.  
 Either way you will need jQuery for this lib.
 
@@ -93,6 +94,10 @@ Exemple:
 Minified js files are planned to be optimized soon.  
 A complete rewrite in full object mode is already availlable.
 
+---
+
+## Usage :
+
 ### Define a callback handler and library usage :
 
 For convenience a configuration object template is provided you can copy it to a var in your scripts :
@@ -107,7 +112,7 @@ To define a **smartEvent** you will need 3 things who are :
 * the event name (like "click", "change", "apersonal:trigger", ...)
 * a callback function (callback functions automatically recieves owner and jQuery Event as parameters, you can inject data in jQuery event)
 * one and only one Html element with an id attribute  
-*(sadly for now it could not work without ids and was tested only on one element. I work to find to make it work on elements collections and without id attribute).
+*(sadly for now it could not work without ids and was tested only on one element. I work to find to make it work on elements collections and without id attribute).*
 ```JavaScript
     // handlers definition
     myDefine.event = 'click'; // jQuery event name
@@ -174,5 +179,53 @@ Explanation:
     $('#someIdentifier').smartEventDeRegister({event: 'click'});
 ```
 
+---
+
+## Advanced exemple :
+We will assume the lib is correctly installed from here.
+
+```JavaScript
+    // handlers definition, lets play a litle
+    // with one button we will : 
+    // trigger a 'first' and second handler
+    // define a personalized event with data from second handler 
+    // (so we make perso dependent of second (for a post ajax call maybe))
+    // and trigger it
+    var firstHDef = { ...smartEventDefine };
+    var secondHDef = { ...smartEventDefine };
+    var persoHDef = { ...smartEventDefine };
+    const PersonalEvent = 'personal:postClick'; // personal event Name
+        
+    secondHDef.event = 'click'; 
+    secondHDef.handler = function (obj, event) { 
+        console.log("In second Handler");
+        var event = $.Event(PersonalEvent); // and make the personal event
+        event.myData = "plop"; // with myData = "plop"
+        
+        $(obj).trigger(event); // and trigger it now
+    };
+    
+    firstHDef.event = 'click';
+    firstHDef.handler = function (obj, event) { 
+        console.log("In first Handler");
+    };
+    
+    persoHDef.event = PersonalEvent; // this is here where magic is made
+    persoHDef.handler = function (obj, event) { 
+        console.log("In personal trigered Handler myData : ", event.myData);
+    };
+    
+    $(document).ready(function() {
+        $('#myButton').smartEvent(secondHDef);
+        $('#myButton').smartEventFirst(firstHDef);
+        $('#myButton').smartEvent(persoHDef); // or first or last it is alone on 'personal:postClick' and will not collide with click
+        // and that's all ! you could write those lines in any order or from 3 files if you want it do not matter
+        // this will also work the same no writing order matter only your choices :
+        // $('#myButton').smartEvent(persoHDef); 
+        // $('#myButton').smartEventFirst(firstHDef);
+        // $('#myButton').smartEventLast(secondHDef);
+    });
+
+```
 Function to remove handlers just came out in this version.  
 I, may, have forgoten something. If so ask if you need help with my lib.
