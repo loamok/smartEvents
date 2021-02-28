@@ -9,6 +9,7 @@ Either way you will need jQuery for this lib.
 ### 0°) Common : 
 #### Download the library from here (or only one of the file you need)
 #### Copy file/files to a folder where you put the Javascripts files in your project.
+#### Or use NPM / Webpak install
 
 ### 1°) : Standard javascript usage :
 #### Include a script call to jQuery : 
